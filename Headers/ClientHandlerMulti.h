@@ -13,14 +13,14 @@ using namespace std;
 
 class ClientHandlerMulti : public IClientHandler {
 public:
-    explicit ClientHandlerMulti(string &name) :m_name(name) {
+    explicit ClientHandlerMulti(string &name);
 
-    }
+    ClientHandlerMulti() = default;
 
     void Handle(SSL *ssl) override;
 
 private:
-    SSL *m_ssl;
+    SSL *m_ssl{};
 //    const char *m_name = "ishay";
     const string m_name;
 
@@ -29,6 +29,7 @@ private:
      * Handles receiving messages
      */
     void ListenerThread();
+
     /**
      * @Threadable
      * Handles sending messages
@@ -43,15 +44,15 @@ private:
 
     /**
      * tries to register with the current name. the server will notify us if the name is already taken.
-     * @return if we've registered successfully
      */
-    bool Register();
+    void Register();
 
     /**
      * gets the addressee name from the user input
      * @return the addressee name
      */
     std::string InputAddressee();
+
     /**
      * gets the message's text from the user input
      * @return the message from the user

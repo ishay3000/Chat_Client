@@ -59,7 +59,7 @@ Packet SSLReceiver::ReceivePacket(SSL *sslClient, Header &header) {
             ERR_print_errors_fp(stderr);
             exit(0);
         }
-    }// finished reading header
+    }// finished reading packet
     memcpy(&packet, buffer, header.dataSize);
     return packet;
 }

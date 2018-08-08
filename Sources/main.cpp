@@ -4,8 +4,6 @@
 
 #include <iostream>
 #include "../Headers/Client.h"
-#include "../Headers/SSLConnection.h"
-#include "../Headers/ClientHandlerEcho.h"
 #include "../Headers/ClientHandlerMulti.h"
 
 #define addr "127.0.0.1"
@@ -25,10 +23,10 @@ class Bar : public Foo{
 int main(){
 //    ClientHandlerEcho handler;
     string name;
-    while(name.size() <= 3 || name.size() >= 15){
+/*    while(name.size() <= 3 || name.size() >= 15){
         printf("Enter your name (4-14 characters long) >> ");
         getline(std::cin, name);
-    }
+    }*/
     ClientHandlerMulti handler(name);
     SSLConnection connection(handler);
     Client client(connection, addr);
