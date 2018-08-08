@@ -22,7 +22,7 @@ public:
 private:
     SSL *m_ssl{};
 //    const char *m_name = "ishay";
-    const string m_name;
+    string m_name;
 
     /**
      * @Threadable

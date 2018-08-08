@@ -103,11 +103,20 @@ void ClientHandlerMulti::SenderThread() {
 std::string ClientHandlerMulti::InputAddressee() {
     char *nl;
     string name;
-    this->WriteLine("Send to >> ");
-    getline(cin, name);
-    nl = strchr(name.data(), '\n');
-    if (nl != nullptr) {
-        *nl = '\0';
+
+    while (true) {
+        this->WriteLine("Send to >> ");
+        getline(cin, name);
+        nl = strchr(name.data(), '\n');
+        if (nl != nullptr) {
+            *nl = '\0';
+        }
+
+        if (name == m_name) {
+            printf("Error: You cannot send a message to yourself.\n");
+        } else {
+            break;
+        }
     }
     return name;
 }
@@ -177,6 +186,7 @@ void ClientHandlerMulti::Register() {
                 // if name is ok, it means that the name isn't taken
                 // and we can exit the loop.
                 printf("Register: Registered successfully!\n");
+                m_name = name;
                 flName = false;
             } else {
                 printf("Register: Error, the name %s is taken.\n", name.data());
